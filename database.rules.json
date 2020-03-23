@@ -1,0 +1,59 @@
+{
+  "rules": {
+    "RenterRef":{
+			".indexOn": ["PhoneNumber"],
+     	".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      ".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'" 
+    },
+    "DevRef":{
+      ".indexOn": ["devID"],
+      ".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      ".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'" 
+    },
+    "link":{
+      ".read": "auth.provider == 'password'",
+      ".write" : true
+    },
+    "Org_Data":{
+        ".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      	".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      	"$Org_ID":{
+      		".read": "auth.token.name == $Org_ID ||
+          	auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      		".write": "auth.token.name == $Org_ID ||
+          	auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'",
+            "Processed_Data":{
+              	".indexOn":["/base/id"]
+        		}
+        }
+    },
+    "Raw_Data":{
+     	".read": false,
+      ".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'" 
+    },    
+    "UnassignedDevices":{
+     	".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      ".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'" 
+    },
+    "Orgs":{
+      ".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      ".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'" ,
+        "$Org_ID":{
+      	".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2' ||
+        	auth.token.name == $Org_ID ",
+      	".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'||
+          auth.token.name == $Org_ID",
+      		"Incidents":{
+      			".indexOn": ["renterID","deviceID"]
+    			}
+        },
+    },
+    "Logs":{
+      ".read": "auth.uid == '43u1keXAvPPMSR63zKcNxsESrxt2'",
+      ".write": "auth.uid ==  '43u1keXAvPPMSR63zKcNxsESrxt2'"  
+    },
+    "BackupData":{
+			".indexOn": ["base/id"]
+    },
+  }
+}
